@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It's an emergency</title>
+    <style>
+        *{
+    padding: 0%;
+    margin: 0%;
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.red-part{
+    flex:1;
+    background-color: red;
+    animation-name: redbox;
+    animation-duration: 700ms;
+    animation-iteration-count:infinite;
+}
+
+.blue-part{
+    flex:1;
+    background-color: blue;
+    animation-name: bluebox;
+    animation-duration: 700ms;
+    animation-iteration-count:infinite
+}
+
+.add-button {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  height: 40px;
+  width: 150px;
+}
+
+@keyframes redbox {
+  0%   {background-color: red;opacity: 1;}
+  25%  {background-color: red;opacity: 0.7;}
+  100% {background-color: blue;opacity: 1;}
+}
+
+@keyframes bluebox {
+  0%   {background-color: blue;}
+  75%   {background-color: red;opacity: 0.7;}
+  100% {background-color: red;}
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="red-part"></div>
+        <div class="blue-part"></div>
+    </div>
+</body>
+<script>
+    if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+  .then(function(registration) {
+    console.log('Registration successful, scope is:', registration.scope);
+  })
+  .catch(function(error) {
+    console.log('Service worker registration failed, error:', error);
+  });
+}
+</script>
+</html>
